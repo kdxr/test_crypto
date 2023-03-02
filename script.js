@@ -52,16 +52,16 @@ const SellWallet = (name, price, amount) => {
 	if (priceWallet <= price) {
 		//กำไร
 		profit +=
-			(price - priceWallet) * (summaryAmount < 1 ? amountWallet : amount);
+			(price - priceWallet) * (summaryAmount <= 0 ? amountWallet : amount);
 	} else {
 		//ขาดทุน
 		profit -=
-			(priceWallet - price) * (summaryAmount < 1 ? amountWallet : amount);
+			(priceWallet - price) * (summaryAmount <= 0 ? amountWallet : amount);
 	}
 
 	// console.log(profit, name, amount);
 
-	if (summaryAmount < 1) wallet.splice(indexWallet, 1);
+	if (summaryAmount <= 0) wallet.splice(indexWallet, 1);
 	else wallet[indexWallet][3] = summaryAmount;
 
 	if (amount > amountWallet) SellWallet(name, price, amount - amountWallet);
